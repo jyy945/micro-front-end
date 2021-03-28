@@ -1,6 +1,5 @@
 const path = require("path");
 const htmlWebpackPlugin = require("html-webpack-plugin");
-const {name} = require("./package.json");
 
 module.exports = {
     mode: "development",
@@ -9,20 +8,17 @@ module.exports = {
     },
     output: {
         filename: "[name].js",
-        path: path.resolve(__dirname, "build"),
-        library: `${name}-[name]`,
-        libraryTarget: "umd",
-        chunkLoadingGlobal: `webpackJsonp_${name}`,
-        globalObject: "window"
+        path: path.resolve(__dirname, "build")
     },
     module: {
         rules: [
             {
                 test: /\.js$/,
+                include: ['/node_modules/qiankun', path.resolve(__dirname, "src")],
                 use: [{
                     loader: "babel-loader",
                     options: {
-                        presets: [["@babel/preset-env",{"modules": "commonjs"}], "@babel/react"],
+                        presets: [["@babel/preset-env"], "@babel/react"],
                         plugins: ["@babel/transform-runtime"],
                     }
                 }]
@@ -35,18 +31,8 @@ module.exports = {
           filename: "index.html"
       })
     ],
+    devtool: "source-map",
     devServer: {
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-        },
-        clientLogLevel:'warning',
-        disableHostCheck:true,
-        historyApiFallback:true,
-        compress:true,
-        overlay:{
-            warnings:false,
-            errors:true
-        },
-        port: "8091"
+        port: "8090"
     }
 };
