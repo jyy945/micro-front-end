@@ -9,6 +9,11 @@ class App extends Component {
                 entry: '//localhost:8091',
                 container: '#container',
                 activeRule: '/sub-react',
+            }, {
+                name: 'sub-vue',
+                entry: '//localhost:9001',
+                container: '#container',
+                activeRule: '/sub-vue',
             }
         ]);
         start();

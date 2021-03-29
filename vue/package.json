@@ -1,0 +1,16 @@
+{
+  "name": "sub-vue",
+  "scripts": {
+    "dev-vue": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "html-webpack-plugin": "^5.3.1",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.2"
+  }
+}
