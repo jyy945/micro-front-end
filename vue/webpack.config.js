@@ -21,14 +21,37 @@ module.exports = {
             {
                 test: [/\.vue$/],
                 use: ["vue-loader"]
+            },
+            {
+                test: /\.scss$/,
+                use: ["style-loader", "css-loader", "sass-loader"]
+            },
+            {
+                test: /\.less$/,
+                use: ["style-loader", "css-loader", "less-loader"]
             }
         ]
     },
     plugins: [
         new VueLorderPlugin(),
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, "./public/index.html"),
+            filename: "index.html"
+        })
     ],
+    devtool: "source-map",
     devServer: {
-        port: "9001"
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
+        clientLogLevel:'warning',
+        disableHostCheck:true,
+        historyApiFallback:true,
+        compress:true,
+        overlay:{
+            warnings:false,
+            errors:true
+        },
+        port: "8092",
     },
 }

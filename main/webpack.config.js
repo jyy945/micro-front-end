@@ -27,12 +27,13 @@ module.exports = {
     },
     plugins: [
       new htmlWebpackPlugin({
-          template: path.resolve(__dirname, "./src/index.html"),
+          template: path.resolve(__dirname, "./public/index.html"),
           filename: "index.html"
       })
     ],
     devtool: "source-map",
     devServer: {
-        port: "8090"
+        port: "8090",
+        historyApiFallback: true
     }
 };

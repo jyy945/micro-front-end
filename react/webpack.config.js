@@ -26,12 +26,52 @@ module.exports = {
                         plugins: ["@babel/transform-runtime"],
                     }
                 }]
+            },
+            {
+                test: /\.scss$/,
+                use:[
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            // 启用css modules
+                            modules: {
+                                localIdentName: '[name]__[local]--[hash:base64:5]'
+                            }
+                        }
+                    },
+                    {
+                        loader: "sass-loader"
+                    }
+                ]
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader",
+                        options: {
+                            // 启用css modules
+                            modules: {
+                                localIdentName: '[name]__[local]--[hash:base64:5]'
+                            }
+                        }
+                    },
+                    {
+                        loader: "less-loader"
+                    }
+                ]
             }
         ]
     },
     plugins: [
       new htmlWebpackPlugin({
-          template: path.resolve(__dirname, "./src/index.html"),
+          template: path.resolve(__dirname, "./public/index.html"),
           filename: "index.html"
       })
     ],

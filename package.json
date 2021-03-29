@@ -1,0 +1,13 @@
+{
+  "name": "micro-front-end1",
+  "version": "1.0.0",
+  "scripts": {
+    "dev-main": "npm run dev-main --prefix main",
+    "dev-react": "npm run dev-react --prefix react",
+    "dev-vue": "npm run dev-vue --prefix vue",
+    "start": "npm-run-all --parallel dev-main dev-react dev-vue"
+  },
+  "dependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}

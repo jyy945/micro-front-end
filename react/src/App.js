@@ -1,5 +1,6 @@
 import React from "react";
+import style from "./app.less";
 
 export default () => (
-    <div>this is react</div>
+    <div className={style.text}>this is react</div>
 )
