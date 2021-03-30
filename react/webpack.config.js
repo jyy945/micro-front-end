@@ -10,7 +10,7 @@ module.exports = {
     output: {
         filename: "[name].js",
         path: path.resolve(__dirname, "build"),
-        library: `${name}-[name]`,
+        library: `subReact`,
         libraryTarget: "umd",
         chunkLoadingGlobal: `webpackJsonp_${name}`,
         globalObject: "window"
@@ -46,26 +46,6 @@ module.exports = {
                         loader: "sass-loader"
                     }
                 ]
-            },
-            {
-                test: /\.less$/,
-                use: [
-                    {
-                        loader: "style-loader"
-                    },
-                    {
-                        loader: "css-loader",
-                        options: {
-                            // 启用css modules
-                            modules: {
-                                localIdentName: '[name]__[local]--[hash:base64:5]'
-                            }
-                        }
-                    },
-                    {
-                        loader: "less-loader"
-                    }
-                ]
             }
         ]
     },
@@ -79,8 +59,6 @@ module.exports = {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
-        clientLogLevel:'warning',
-        disableHostCheck:true,
         historyApiFallback:true,
         compress:true,
         overlay:{

@@ -1,8 +1,6 @@
 import React, {Component} from "react";
-import { registerMicroApps, start } from 'qiankun';
-import {Link, Route} from 'react-router-dom'
-import Home from "./Home";
-import About from "./About";
+import { registerMicroApps, start, runAfterFirstMounted } from 'qiankun';
+import {Link} from 'react-router-dom'
 
 class App extends Component {
     constructor(props){
@@ -12,27 +10,46 @@ class App extends Component {
     componentDidMount() {
         registerMicroApps([
             {
-                name: 'reactApp',
+                name: 'subReact',
                 entry: '//localhost:8091',
                 container: '#container',
                 activeRule: 'app-react',
             },
             {
-                name: 'vueApp',
+                name: 'subVue',
                 entry: '//localhost:8092',
                 container: '#container',
                 activeRule: 'app-vue',
             }
-        ]);
-        start();
+        ],{
+            beforeLoad: app => console.log("主应用before Load"),
+            beforeMount: [
+                app => console.log("主应用before mount"),
+            ],
+            afterMount : [
+                app => console.log("主应用after mount"),
+            ],
+            beforeUnmount  : [
+                app => console.log("主应用before unmount"),
+            ],
+            afterUnmount  : [
+                app => console.log("主应用after unmount"),
+            ],
+        });
+        start({
+            prefetch: "all"
+        });
+        runAfterFirstMounted(() => {
+            console.log(123123);
+        })
     }
     render(){
         return (
             <div>
                 <div>
                     <ul>
-                        {/*<li><Link to="/home">Home</Link></li>*/}
-                        <li><Link to="/app-vue">About</Link></li>
+                        <li><Link to="/app-react">react</Link></li>
+                        <li><Link to="/app-vue">vue</Link></li>
                     </ul>
                 </div>
                 <div className="rightMain">

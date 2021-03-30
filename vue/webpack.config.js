@@ -11,7 +11,7 @@ module.exports = {
     output: {
         filename: "[name].js",
         path: path.resolve(__dirname, "build"),
-        library: `${name}-[name]`,
+        library: `subVue`,
         libraryTarget: "umd",
         chunkLoadingGlobal: `webpackJsonp_${name}`,
         globalObject: "window"
@@ -44,8 +44,6 @@ module.exports = {
         headers: {
             'Access-Control-Allow-Origin': '*',
         },
-        clientLogLevel:'warning',
-        disableHostCheck:true,
         historyApiFallback:true,
         compress:true,
         overlay:{
